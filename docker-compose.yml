@@ -1,0 +1,31 @@
+version: '3'
+services:
+  web:
+    image: php:apache
+    ports:
+      - 8080:80
+    volumes:
+      - ./src:/var/www/html
+    depends_on:
+      - db
+    command: ["sh", "-c", "a2enmod rewrite && apache2-foreground"]
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    ports:
+      - 8081:80
+    environment:
+      PMA_HOST: db
+      PMA_USER: api
+      PMA_PASSWORD:  api-pass
+      PMA_ARBITRARY: 1
+      
+  db:
+    image: mysql:latest
+    ports:
+      - 3306:3306
+    environment:
+      MYSQL_ROOT_PASSWORD: root-pass
+      MYSQL_DATABASE: crud-example
+      MYSQL_USER: api
+      MYSQL_PASSWORD: api-pass
