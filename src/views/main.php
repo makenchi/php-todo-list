@@ -1,5 +1,5 @@
 <?php
-  fetch('todo:get', 'tasks')
+  fetch('TodoController:get', 'tasks')
 ?>
 
 <html>

@@ -4,11 +4,18 @@ class TodoController {
   public $model;
 
   public function __construct() {
-    $this->model = mdoel('todo');
+    $this->model = model('todo', 'Todo');
   }
 
   public function get() {
-    return "Hello from the todo.controller.php get method";
+    return [ 
+      'items' => [
+        "Hello from the todo.controller.php get method",
+        "Hello from the todo.controller.php get method",
+        "Hello from the todo.controller.php get method",
+      ]
+    ];
+
     $data = $this->model->getAll();
     return $data;
   }
