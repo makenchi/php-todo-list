@@ -1,1 +1,1 @@
-CREATE TABLE `crud-example`.`tasks` (`id` INT NOT NULL AUTO_INCREMENT , `text` VARCHAR(255) NOT NULL , `completed` TINYINT NOT NULL , `createdAt` TIMESTAMP NOT NULL , PRIMARY KEY (`id`)) ENGINE = InnoDB; 
+CREATE TABLE `crud-example`.`tasks` (`id` INT NOT NULL AUTO_INCREMENT , `text` VARCHAR(255) NOT NULL , `completed` TINYINT DEFAULT 0, `createdAt` TIMESTAMP NOT NULL , PRIMARY KEY (`id`)) ENGINE = InnoDB; 

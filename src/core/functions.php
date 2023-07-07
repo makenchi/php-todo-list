@@ -11,7 +11,3 @@ function startsWith($string, $piece) {
 function text($str) {
   echo $str;
 }
-
-function model($str) {
-  
-}

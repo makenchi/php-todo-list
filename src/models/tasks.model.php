@@ -1,14 +1,14 @@
 <?php
 
-class TodoModel {
+class TaskModel {
   public $db;
 
-  public function __construct($) {
+  public function __construct() {
     $this->db = db();
   }
 
   public function getAll() {
-
+    dd(paginate(1, 20, 'tasks'));
   }
 }
 

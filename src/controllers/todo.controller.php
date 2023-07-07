@@ -4,10 +4,12 @@ class TodoController {
   public $model;
 
   public function __construct() {
-    $this->model = model('todo', 'Todo');
+    $this->model = createModelInstance('tasks', 'TaskModel');
   }
 
   public function get() {
+    $data = $this->model->getAll();
+
     return [ 
       'items' => [
         "Hello from the todo.controller.php get method",

@@ -1,15 +1,22 @@
 version: '3'
 services:
   web:
-    image: php:apache
+    build: .
     ports:
       - 8080:80
     volumes:
       - ./src:/var/www/html
       - ./public:/var/www/html/public
+    environment:
+      DB_HOST: db
+      DB_USER: api
+      DB_PASS: api-pass
+      DB_NAME: crud-example
+
+    links:
+      - db
     depends_on:
       - db
-    command: ["sh", "-c", "a2enmod rewrite && apache2-foreground"]
 
   phpmyadmin:
     image: phpmyadmin/phpmyadmin
