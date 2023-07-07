@@ -4,7 +4,7 @@ class TodoController {
   public $model;
 
   public function __construct() {
-    $this->model = model('todo');
+    $this->model = mdoel('todo');
   }
 
   public function get() {
