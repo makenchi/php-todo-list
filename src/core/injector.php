@@ -11,13 +11,23 @@ function createControllerInstance($path, $className) {
   ];
 
   $class = new $className();
-  $method = $method_map[$_SERVER['REQUEST_METHOD']];
+  $method_request = $_SERVER['REQUEST_METHOD'];
+  $method = $method_map[$method_request];
 
   if(!method_exists($class, $method)) {
     die("Method not available :(");
   }
 
-  $res = $class->$method();
+  $res;
+  if($method_request == "POST" || $method_request == "PUT"){
+    $json = file_get_contents('php://input');    
+    $data = json_decode($json,true);
+    $res = $class->$method($data);
+  }
+  else{
+    $res = $class->$method();
+  }
+
   if (is_string($res)) {
     return $res;
   } elseif (is_object($res) || is_array($res)) {

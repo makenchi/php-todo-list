@@ -23,8 +23,9 @@ class TodoController {
   }
 
   public function create($payload) {
-    $data = $this->model->create($payload);
-    return $data;
+    $data = $this->model->createTask($payload["text"]);
+    $payload["id"] = $data;
+    return $payload;
   }
 
   public function update() {
