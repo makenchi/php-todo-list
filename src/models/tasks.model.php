@@ -8,7 +8,7 @@ class TaskModel {
   }
 
   public function getAll() {
-    dd(paginate(1, 20, 'tasks'));
+    return paginate(1, 20, 'tasks');
   }
 
   public function createTask($text){

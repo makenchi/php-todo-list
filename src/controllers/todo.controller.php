@@ -9,16 +9,6 @@ class TodoController {
 
   public function get() {
     $data = $this->model->getAll();
-
-    return [ 
-      'items' => [
-        "Hello from the todo.controller.php get method",
-        "Hello from the todo.controller.php get method",
-        "Hello from the todo.controller.php get method",
-      ]
-    ];
-
-    $data = $this->model->getAll();
     return $data;
   }
 
