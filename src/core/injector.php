@@ -1,6 +1,6 @@
 <?php
 
-function createControllerInstance($path, $className) {
+function createControllerInstance($path, $className, $context) {
   require_once $path.".controller.php";
 
   $method_map = [
@@ -22,10 +22,10 @@ function createControllerInstance($path, $className) {
   if($method_request == "POST" || $method_request == "PUT"){
     $json = file_get_contents('php://input');    
     $data = json_decode($json,true);
-    $res = $class->$method($data);
+    $res = $class->$method($data, $context);
   }
   else{
-    $res = $class->$method();
+    $res = $class->$method($context);
   }
 
   if (is_string($res)) {
