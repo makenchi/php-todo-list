@@ -3,6 +3,7 @@
   --create-item-size: 400px;
   --gap: 32px;
   --space-top: 64px;
+  --icon-size-md: 22px;
   --primary-color: red;
   --bg-color: rgba(244, 244, 244, 0.906)
 }
@@ -53,6 +54,17 @@ body {
   align-items: center;
   justify-content: space-between;
   color: #333;
+}
+
+.icon {
+  display: inline-flex;
+  cursor: pointer;
+  width: var(--icon-size-md);
+  height: var(--icon-size-md);
+}
+
+.icon:not(:last-child) {
+  margin-right: 8px;
 }
 
 input[type="checkbox"] {

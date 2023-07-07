@@ -24,46 +24,4 @@
 
     return $instance;
   }
-
-  function paginate($page, $pageSize, $tableName) {
-    $offset = ($page - 1) * $pageSize;
-    $query = "SELECT * FROM $tableName LIMIT $pageSize OFFSET $offset";
-
-    return execute($query);
-  }
-
-  function execute($query){
-    $result = db()->query($query);
-
-    if (!$result) {
-        die("Query failed: " . $conn->error);
-    }
-
-    $rows = [];
-    while ($row = $result->fetch_assoc()) {
-      $rows[] = $row;
-    }
-
-    return $rows;    
-  }
-
-  function insert($tableName, $data) {
-    $columns = implode(", ", array_keys($data));
-    $placeholders = implode(", ", array_fill(0, count($data), "?"));
-    $sql = "INSERT INTO $tableName ($columns) VALUES ($placeholders)";
-
-    $stmt = db()->prepare($sql);
-
-    $bindTypes = "";
-    $bindValues = [];
-    foreach ($data as $value) {
-        $bindTypes .= "s"; 
-        $bindValues[] = $value;
-    }
-
-    $stmt->bind_param($bindTypes, ...$bindValues);
-    $stmt->execute();
-    $stmt->close();
-    return db()->insert_id;
-}   
 ?>

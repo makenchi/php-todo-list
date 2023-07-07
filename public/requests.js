@@ -19,15 +19,26 @@ function createTask(text, fn) {
     error: function(jqXHR, textStatus, error) {
       fn(error, null)
     }
-});
+  });
 }
 
 function updateTask(id, newText) {
 
 }
 
-function removeTask(id) {
-
+function removeTask(id, fn) {
+  if(confirm("Tem certeza que deseja apagar essa tarefa? Essa ação não poderá ser revertida")) {
+    $.ajax({
+      url: '/api/tasks/'+id,
+      type: 'DELETE',
+      success: function(response) {
+        fn(null, response);
+      },
+      error: function(xhr, status, error) {
+        fn(error, null);
+      }
+    });
+  }
 }
 
 function mapFormData(form) {

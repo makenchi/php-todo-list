@@ -19,17 +19,16 @@ class TodoController {
   }
 
   public function update($payload, $context) {
-    dd([
-      $payload,
-      $context
-    ]);
-    $data = $this->model->update($payload);
+
+    $id = $context['param'];
+    if(isset($payload['id'])) unset($payload['id']);
+
+    $data = $this->model->update($context['param'], $payload);
     return $data;
   }
 
   public function del($context) {
-    dd($context);
-    $data = $this->model->delete($payload);
+    $data = $this->model->del($context['param']);
     return $data;
   }
 }

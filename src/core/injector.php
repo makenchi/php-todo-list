@@ -23,8 +23,7 @@ function createControllerInstance($path, $className, $context) {
     $json = file_get_contents('php://input');    
     $data = json_decode($json,true);
     $res = $class->$method($data, $context);
-  }
-  else{
+  } else{
     $res = $class->$method($context);
   }
 

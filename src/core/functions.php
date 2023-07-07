@@ -22,12 +22,8 @@ function fetch($field, $controller) {
   $response = createControllerInstance("controllers/$info[0]", $info[1], [
     'headless' => true
   ]);
-
-  $res = [
-    $field => $response
-  ];
-
-  return $res;
+  
+  return $response;
 }
 
 function text($str) {
