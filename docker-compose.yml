@@ -1,0 +1,41 @@
+version: '3'
+services:
+  web:
+    build: .
+    ports:
+      - 8080:80
+    volumes:
+      - ./src:/var/www/html
+      - ./public:/var/www/html/public
+    environment:
+      DB_HOST: db
+      DB_USER: api
+      DB_PASS: api-pass
+      DB_NAME: crud-example
+
+    links:
+      - db
+    depends_on:
+      - db
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    ports:
+      - 8081:80
+    environment:
+      PMA_HOST: db
+      PMA_USER: api
+      PMA_PASSWORD:  api-pass
+      PMA_ARBITRARY: 1
+      
+  db:
+    image: mysql:latest
+    volumes:
+      - ./init-db.sql:/docker-entrypoint-initdb.d/init-db.sql
+    ports:
+      - 3306:3306
+    environment:
+      MYSQL_ROOT_PASSWORD: root-pass
+      MYSQL_DATABASE: crud-example
+      MYSQL_USER: api
+      MYSQL_PASSWORD: api-pass
