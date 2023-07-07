@@ -28,8 +28,7 @@ class TodoController {
   }
 
   public function del($context) {
-    dd($context);
-    $data = $this->model->delete($payload);
+    $data = $this->model->deleteTask($context["param"]);
     return $data;
   }
 }

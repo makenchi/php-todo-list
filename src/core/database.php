@@ -66,5 +66,12 @@
     $stmt->execute();
     $stmt->close();
     return db()->insert_id;
-}   
+  }
+  
+  function delete($context){    
+    $query = "DELETE FROM tasks WHERE id='$context'";
+
+    dd(execute($query));
+    return execute($query);
+  }
 ?>

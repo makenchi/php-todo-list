@@ -14,12 +14,11 @@ if(startsWith($handler, 'view')) {
   exit();
 } else if(startsWith($handler, 'controllers')) {
   $param = explode("$route_key/",$uri)[1];
-  
+
   $info = explode('@', $handler);
   $response = createControllerInstance($info[0], $info[1], [
     "param" => $param
   ]);
-
   
   die($response);
 }

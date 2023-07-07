@@ -17,6 +17,10 @@ class TaskModel {
       'text' => $text
     ]);        
   }
+
+  public function deleteTask($context){
+    return delete($context);
+  }
 }
 
 ?>
